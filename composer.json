@@ -1,0 +1,30 @@
+{
+    "name": "kravcik/core",
+    "type": "library",
+    "description": "Basic core for projects",
+    "keywords": ["yetorm", "orm", "basic"],
+    "homepage": "https://github.com/kravcik/Core",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/kravcik/Core/issues"
+    },
+
+    "require": {
+        "php": ">=5.6.0",
+        "nette/utils": "^2.3",
+        "nette/database": "^2.3",
+        "nette/reflection": "^2.3",
+        "uestla/yetORM": "@dev"
+    },
+
+    "require-dev": {
+        "tracy/tracy": "*",
+        "nette/tester": "*"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "Core": "src/"
+        }
+    }
+}

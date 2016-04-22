@@ -1,6 +1,6 @@
 <?php
 
-namespace Kravcik\Core;
+namespace Core\StoreManager;
 
 use \Nette\Utils\Finder as Finder;
 

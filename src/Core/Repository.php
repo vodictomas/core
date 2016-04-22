@@ -1,6 +1,6 @@
 <?php
 
-namespace Kravcik\Core;
+namespace Core;
 
 class Repository extends \YetORM\Repository
 {    

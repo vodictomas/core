@@ -1,6 +1,6 @@
 <?php
 
-namespace Kravcik\Core;
+namespace Core;
 
 abstract class Entity extends \YetORM\Entity
 {

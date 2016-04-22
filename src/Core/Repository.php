@@ -35,7 +35,7 @@ class Repository extends \YetORM\Repository
      * 
      * @return \YetORM\EntityCollection
      */
-    public function findBy($criteria)
+    public function findBy(array $criteria)
     {
         return parent::findBy($criteria);
     }
@@ -80,11 +80,11 @@ class Repository extends \YetORM\Repository
     /** 
      * Return bool (ID or FALSE)
      * 
-     * @param \Kravcik\Core\Entity $entity
+     * @param \YetORM\Entity $entity
      * 
      * @return int|FALSE
      */
-    public function persist(\Kravcik\Core\Entity $entity)
+    public function persist(\YetORM\Entity $entity)
     {       
         $this->checkEntity($entity);
 
@@ -140,5 +140,15 @@ class Repository extends \YetORM\Repository
         $query = $this->database->query("SHOW COLUMNS FROM " . $this->getTableName() . " LIKE '" . $column . "';");
         
         return $query->fetch() ? TRUE : FALSE;
+    }
+    
+    /** 
+     * Return Nette Selection for current table
+     * 
+     * @return \Nette\Database\Table\Selection
+     */
+    public function getTable($table = NULL)
+    {
+        return parent::getTable($table);
     }
 }

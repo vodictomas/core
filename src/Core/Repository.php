@@ -68,11 +68,11 @@ class Repository extends \YetORM\Repository
     /**
      * Remove single instance from database
      * 
-     * @param \Kravcik\Core\Entity $entity
+     * @param \Core\Entity $entity
      * 
      * @return bool
      */
-    public function save(\Kravcik\Core\Entity $entity)
+    public function save(\Core\Entity $entity)
     {
         return $this->persist($entity);
     }
@@ -88,7 +88,7 @@ class Repository extends \YetORM\Repository
     {       
         $this->checkEntity($entity);
 
-        $store = new \Kravcik\Core\StoreManager();
+        $store = new \Core\StoreManager\StoreManager();
 
         /** Store changes if is allowed */
         if($store->avaibleStore($this->table))
@@ -119,11 +119,11 @@ class Repository extends \YetORM\Repository
     /**
      * Remove single instance from database
      * 
-     * @param \Kravcik\Core\Entity $entity
+     * @param \Core\Entity $entity
      * 
      * @return bool
      */
-    public function remove(\Kravcik\Core\Entity $entity)
+    public function remove(\Core\Entity $entity)
     {
         return parent::delete($entity);
     }

@@ -4,7 +4,7 @@
  * @table  animal
  * @entity AnimalEntity
  */
-class AnimalRepository extends \Kravcik\Core\Repository
+class AnimalRepository extends \Core\Repository
 {
     /**
      * @param  NdbContext $context

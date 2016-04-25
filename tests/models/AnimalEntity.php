@@ -7,7 +7,7 @@
  * @property \Nette\Utils\DateTime $birth
  * @property string $parameters json
  */
-class AnimalEntity extends \Kravcik\Core\Entity
+class AnimalEntity extends \Core\Entity
 {
 
 }

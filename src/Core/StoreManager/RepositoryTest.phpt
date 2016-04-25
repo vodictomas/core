@@ -3,15 +3,21 @@ use Tester\Assert;
 
 require __DIR__ . '/../vendor/autoload.php'; 
 
-require __DIR__ . '/../src/Entity.php';
-require __DIR__ . '/../src/Repository.php';
-require __DIR__ . '/../src/StoreManager/StoreManager.php';
+require __DIR__ . '/../src/Core/Entity.php';
+require __DIR__ . '/../src/Core/Repository.php';
+require __DIR__ . '/../src/Core/StoreManager/StoreManager.php';
 
 require __DIR__ . '/../models/AnimalEntity.php';
 require __DIR__ . '/../models/AnimalRepository.php';
 require __DIR__ . '/../models/Service.php';
 
+/**
+ * @testCase <-- tohle ti bude každou metodu test*() pouštět paralelně a počítat jí jako samostatný test case
+ */
+
 \Tester\Environment::setup();
+
+
 
 date_default_timezone_set('UTC');
 
@@ -49,13 +55,15 @@ $collection = $repository->findAll();
 Assert::true($collection instanceof \YetORM\EntityCollection);
 Assert::same(2, $collection->count());
 
+die;
+
 /**
  * TEST: Load entity from DB by criteria
  */
 /* @var $entity AnimalEntity */
 $entity = $repository->getBy(['name' => 'Giraffe']);
 
-Assert::true($entity instanceof \Kravcik\Core\Entity);
+Assert::true($entity instanceof \Core\Entity);
 Assert::same('Giraffe', $entity->name);
 
 /** 

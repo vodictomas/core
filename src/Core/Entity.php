@@ -11,7 +11,7 @@ abstract class Entity extends \YetORM\Entity
      * @param string $name
      *      
      */
-    function __get($name)
+    public function & __get($name)
     {
         $value = parent::__get($name);
         
@@ -33,7 +33,7 @@ abstract class Entity extends \YetORM\Entity
      * @param mixed $value
      * 
      */
-    function __set($name, $value)
+    public function & __set($name, $value)
     {
         $ref = static::getReflection();
         

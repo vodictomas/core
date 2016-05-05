@@ -50,7 +50,9 @@ abstract class Entity extends \YetORM\Entity
             $value = \Nette\Utils\DateTime::from($value);
         }
         
-        return parent::__set($name, $value);
+        $value = parent::__set($name, $value);
+        
+        return $value;
     }
     
     /** 

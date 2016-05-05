@@ -88,9 +88,7 @@ class RepositoryCaseTest extends \Tester\TestCase
         $deletedEntity = $repository->getBy(['id' => $id]);
 
         Assert::same(NULL, $deletedEntity);
-    }
-
-            
+    }        
 }
 
 $testCase = new RepositoryCaseTest();

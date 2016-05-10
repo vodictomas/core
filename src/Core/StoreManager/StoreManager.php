@@ -9,7 +9,7 @@ use \Nette\Utils\Finder as Finder;
  */
 class StoreManager extends \Nette\Object
 {
-    const DATA_PATH = '/../../../data/';
+    const DATA_PATH = '/../../../../../../data/';
     
     /** 
      * List active store tables 

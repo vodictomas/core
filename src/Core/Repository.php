@@ -62,7 +62,7 @@ class Repository extends \YetORM\Repository
      */
     public function fetchPairs($key, $value, array $criteria = [], $order = NULL)
     {       
-        return ($order) ? $this->getTable()->where($criteria)->order($order)->fetchPairs($key, $value) : $this->getTable()->where($criteria)->fetchPairs($key, $value);
+        return ($order) ? $this->getTable()->select($key . ',' . $value)->where($criteria)->order($order)->fetchPairs($key, $value) : $this->getTable()->select($key . ',' . $value)->where($criteria)->fetchPairs($key, $value);
     }
     
     /**

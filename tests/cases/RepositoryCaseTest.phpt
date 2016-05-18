@@ -78,6 +78,13 @@ class RepositoryCaseTest extends \Tester\TestCase
 
         Assert::same('Giraffe', $pairs[2]);
 
+        /**
+         * Test fetch pairs
+         */
+        $array = $repository->fetchPairs('id', 'name');
+        
+        Assert::same([1 => 'Gorilla', 2 => 'Giraffe'], $array);
+        
         /** 
         * TEST: Remove entity from DB
         */
@@ -88,7 +95,7 @@ class RepositoryCaseTest extends \Tester\TestCase
         $deletedEntity = $repository->getBy(['id' => $id]);
 
         Assert::same(NULL, $deletedEntity);
-    }        
+    }
 }
 
 $testCase = new RepositoryCaseTest();

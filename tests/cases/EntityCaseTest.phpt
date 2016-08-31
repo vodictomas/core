@@ -17,6 +17,18 @@ class EntityCaseTest extends \Tester\TestCase
         $this->Service->cache->clean([\Nette\Caching\Cache::ALL]);
     }
 
+    /**
+     * If possible set NULL thruw new reflection?
+     */
+    public function testEntitySetNull()
+    {
+        $zooEntity = new ZooEntity;
+        $zooEntity->name = 'Zoo Plzeň';
+        $zooEntity->motto = NULL;
+        
+        Assert::same(NULL, $zooEntity->motto);
+    }
+    
     /** 
      * Entity to Array
      */

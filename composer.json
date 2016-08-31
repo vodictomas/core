@@ -14,7 +14,7 @@
         "nette/utils": "^2.3",
         "nette/database": "^2.3",
         "nette/reflection": "^2.3",
-        "uestla/yetORM": "@dev"
+        "uestla/yetORM": "~10.0"
     },
 
     "require-dev": {

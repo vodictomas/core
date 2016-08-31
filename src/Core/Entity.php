@@ -17,7 +17,7 @@ abstract class Entity extends \YetORM\Entity
         
         $ref = static::getReflection();
         
-        if($ref->getEntityProperty($name)->description == 'json')
+        if($ref->getEntityProperty($name)->getDescription() == 'json')
         {        
             $value = \Nette\Utils\Json::decode($value, \Nette\Utils\Json::FORCE_ARRAY);
         }
@@ -37,7 +37,7 @@ abstract class Entity extends \YetORM\Entity
     {
         $ref = static::getReflection();
         
-        if($ref->getEntityProperty($name)->description == 'json')
+        if($ref->getEntityProperty($name)->getDescription() == 'json')
         {
             if(is_array($value))
             {
@@ -45,7 +45,7 @@ abstract class Entity extends \YetORM\Entity
             }
         }
         
-        if($ref->getEntityProperty($name)->type == 'Nette\Utils\DateTime' && !is_null($value))
+        if($ref->getEntityProperty($name)->getType() == 'Nette\Utils\DateTime' && !is_null($value))
         {
             $value = \Nette\Utils\DateTime::from($value);
         }
@@ -70,7 +70,7 @@ abstract class Entity extends \YetORM\Entity
         {
             $functionName = 'set' . ucfirst($name);
             
-            if(isset($values[$name]) && !$property->readonly)
+            if(isset($values[$name]) && !$property->isReadonly())
             { 
                 /** 
                  * Entity has special set function? Use it instead of simple set
@@ -84,7 +84,7 @@ abstract class Entity extends \YetORM\Entity
                     /** 
                      * Set NULL for nullable properties 
                      */
-                    if(isset($property->nullable) && $property->nullable && empty($values[$name]))
+                    if($property->isNullable() && empty($values[$name]))
                     {
                         $values[$name] = NULL;
                     } 
@@ -108,7 +108,7 @@ abstract class Entity extends \YetORM\Entity
                     /** 
                      * Convert array to json  
                      */
-                    if($property->description == 'json' && is_array($values[$name]))
+                    if($property->getDescription() == 'json' && is_array($values[$name]))
                     {                        
                         $this->$name = \Nette\Utils\Json::encode($values[$name]);
                     }

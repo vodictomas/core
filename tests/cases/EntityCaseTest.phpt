@@ -45,6 +45,23 @@ class EntityCaseTest extends \Tester\TestCase
         Assert::true(is_array($array));
     }
 
+    /**
+     * Test if int 0 can be transform thruw array conversion func
+     * 
+     */
+    public function testEntityToArrayInteger()
+    {
+        $animalEntity = new AnimalEntity();
+        $animalEntity->name = 'Kangaroo';
+        $animalEntity->weight = 0;
+        $animalEntity->birth = new \Nette\Utils\DateTime('2015-01-01 12:00:00');
+        $animalEntity->parameters = ['color' => 'brown', 'ears' => 2, 'eyes' => 1];
+        
+        $array = $animalEntity->toArray(['id']);
+        
+        Assert::same(0, $array['weight']);
+    }
+    
     /** 
      * Entity filled from Array
      */

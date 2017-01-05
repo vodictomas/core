@@ -148,7 +148,7 @@ abstract class Entity extends \YetORM\Entity
                 } 
                 else 
                 {
-                    $value = (!empty($this->$name)) ? $this->$name : NULL;
+                    $value = (!empty($this->$name) || $this->$name === 0) ? $this->$name : NULL;
                 }
 
                 if(!($value instanceof \YetORM\EntityCollection || $value instanceof \YetORM\Entity))

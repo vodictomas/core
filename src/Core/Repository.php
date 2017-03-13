@@ -88,14 +88,6 @@ class Repository extends \YetORM\Repository
     {       
         $this->checkEntity($entity);
 
-        $store = new \Core\StoreManager\StoreManager();
-
-        /** Store changes if is allowed */
-        if($store->avaibleStore($this->table))
-        {
-            $store->store($this, $entity);
-        }
-         
         $me = $this;
         
         return $this->transaction(function () use ($me, $entity) 

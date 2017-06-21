@@ -136,19 +136,19 @@ abstract class Entity extends \YetORM\Entity
         }
         
         $ref = static::getReflection();
-        $values = [];
-
-        foreach ($ref->getEntityProperties() as $name => $property)
-        {
+	$values = [];
+        
+	foreach ($ref->getEntityProperties() as $name => $property) 
+        {   
             if(array_search($name, $excludedProperties) === FALSE)
             {
-                if($property instanceof \YetORM\Reflection\MethodProperty)
+                if($property instanceof \YetORM\Reflection\MethodProperty) 
                 {
                     $value = $this->{'get' . $name}();
-                }
-                else
+                } 
+                else 
                 {
-                    $value = (!empty($this->$name)) ? $this->$name : NULL;
+                    $value = (!empty($this->$name) || $this->$name === 0) ? $this->$name : NULL;
                 }
 
                 if(!($value instanceof \YetORM\EntityCollection || $value instanceof \YetORM\Entity))
@@ -156,7 +156,7 @@ abstract class Entity extends \YetORM\Entity
                     $values[$name] = $value;
                 }
             }
-        }
+	}
 
         return $values;
     }

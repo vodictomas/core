@@ -77,6 +77,24 @@ class Repository extends \YetORM\Repository
         return $this->persist($entity);
     }
     
+    /**
+     * Save collection by transaction
+     * 
+     * @param \YetORM\EntityCollection $collection
+     * 
+     * @return mixed
+     */
+    public function saveCollection(\YetORM\EntityCollection $collection)
+    {
+        return $this->transaction(function() use ($collection)
+        {
+            foreach($collection as $entity)
+            {
+                parent::persist($entity);
+            }
+        });
+    }
+    
     /** 
      * Return bool (ID or FALSE)
      * 

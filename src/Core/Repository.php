@@ -79,12 +79,13 @@ class Repository extends \YetORM\Repository
     
     /**
      * Save collection by transaction
+     * @note Array or Arrash hash must have entity inside
      * 
-     * @param \YetORM\EntityCollection $collection
+     * @param array|\Nette\Utils\ArrayHash|\YetORM\EntityCollection $collection
      * 
      * @return mixed
      */
-    public function saveCollection(\YetORM\EntityCollection $collection)
+    public function saveCollection($collection)
     {
         return $this->transaction(function() use ($collection)
         {

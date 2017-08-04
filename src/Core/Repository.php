@@ -139,6 +139,25 @@ class Repository extends \YetORM\Repository
         return parent::delete($entity);
     }
     
+    /**
+     * Remove collection by transaction
+     * @note Array or Arrash hash must have entity inside
+     *
+     * @param array|\Nette\Utils\ArrayHash|\YetORM\EntityCollection $collection
+     *
+     * @return mixed
+     */
+    public function removeCollection($collection)
+    {
+        return $this->transaction(function() use ($collection)
+        {
+            foreach($collection as $entity)
+            {
+                parent::delete($entity);
+            }
+        });
+    }
+    
     /** 
      * Check if column exist in table
      * 

@@ -19,7 +19,10 @@ abstract class Entity extends \YetORM\Entity
         
         if($ref->getEntityProperty($name)->getDescription() == 'json')
         {        
-            $value = \Nette\Utils\Json::decode($value, \Nette\Utils\Json::FORCE_ARRAY);
+            if($value !== NULL)
+            {
+                $value = \Nette\Utils\Json::decode($value, \Nette\Utils\Json::FORCE_ARRAY);
+            }
         }
  
         return $value;

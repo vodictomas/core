@@ -11,9 +11,9 @@ class Repository extends \YetORM\Repository
      * 
      * @return \Nette\Database\ResultSet
      */
-    public function query($sql)
+    public function query($sql, ...$params)
     {        
-        return $this->database->query($sql);
+        return $this->database->query($sql, ...$params);
     }
     
     /** 

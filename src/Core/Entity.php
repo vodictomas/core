@@ -163,4 +163,14 @@ abstract class Entity extends \YetORM\Entity
 
         return $values;
     }
+	
+    /**
+     * Return array of modified values
+     * 
+     * @return array
+     */
+    public function getModifiedArray()
+    {
+        return $this->record->getModified();
+    }
 }

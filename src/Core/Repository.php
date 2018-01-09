@@ -54,15 +54,33 @@ class Repository extends \YetORM\Repository
      * Return pairs from current table
      * 
      * @param string $key Column use like key
-     * @param string $value Column use like value
+     * @param string|array $value Column use like value
      * @param array $criteria
      * @param string|NULL $order
+     * @param string $separator
      * 
      * @return array
      */
-    public function fetchPairs($key, $value, array $criteria = [], $order = NULL)
-    {       
-        return ($order) ? $this->getTable()->select($key . ',' . $value)->where($criteria)->order($order)->fetchPairs($key, $value) : $this->getTable()->select($key . ',' . $value)->where($criteria)->fetchPairs($key, $value);
+    public function fetchPairs($key, $value, array $criteria = [], $order = NULL, $separator = " ")
+    {               
+        if(is_array($value))
+        {
+            $valueColumn = 'CONCAT_WS("' . $separator . '", ' . implode(',', $value) . ') AS custom_column';            
+            $value = 'custom_column';
+        }
+        else
+        {
+            $valueColumn = $value;
+        }
+        
+        $table = $this->getTable()->select($key . ',' . $valueColumn)->where($criteria);
+        
+        if($order)
+        {
+            $table->order($order);
+        }
+               
+        return $table->fetchPairs($key, $value);                
     }
     
     /**

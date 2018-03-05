@@ -17,7 +17,14 @@ abstract class Entity extends \YetORM\Entity
         
         $ref = static::getReflection();
         
-        if($ref->getEntityProperty($name)->getDescription() == 'json')
+        $property = $ref->getEntityProperty($name);
+        
+        if(!$property)
+        {
+            throw new \Exception('Property ' . $name . ' is not defined in ' . $ref->getName());
+        }
+        
+        if($property->getDescription() == 'json')
         {        
             if($value !== NULL)
             {
@@ -40,7 +47,14 @@ abstract class Entity extends \YetORM\Entity
     {
         $ref = static::getReflection();
         
-        if($ref->getEntityProperty($name)->getDescription() == 'json')
+        $property = $ref->getEntityProperty($name);
+        
+        if(!$property)
+        {
+            throw new \Exception('Property ' . $name . ' is not defined in ' . $ref->getName());
+        }
+        
+        if($property->getDescription() == 'json')
         {
             if(is_array($value))
             {
@@ -48,7 +62,7 @@ abstract class Entity extends \YetORM\Entity
             }
         }
         
-        if($ref->getEntityProperty($name)->getType() == 'Nette\Utils\DateTime' && !is_null($value))
+        if($property->getType() == 'Nette\Utils\DateTime' && !is_null($value))
         {
             $value = \Nette\Utils\DateTime::from($value);
         }

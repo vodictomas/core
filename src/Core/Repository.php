@@ -84,7 +84,7 @@ class Repository extends \YetORM\Repository
     }
     
     /**
-     * Remove single instance from database
+     * Save single instance from database
      * 
      * @param \Core\Entity $entity
      * 

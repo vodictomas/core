@@ -105,13 +105,16 @@ class Repository extends \YetORM\Repository
      */
     public function saveCollection($collection)
     {
-        return $this->transaction(function() use ($collection)
+        if($collection)
         {
-            foreach($collection as $entity)
+            return $this->transaction(function() use ($collection)
             {
-                parent::persist($entity);
-            }
-        });
+                foreach($collection as $entity)
+                {
+                    parent::persist($entity);
+                }
+            });
+        }
     }
     
     /** 
@@ -167,13 +170,16 @@ class Repository extends \YetORM\Repository
      */
     public function removeCollection($collection)
     {
-        return $this->transaction(function() use ($collection)
+        if($collection)
         {
-            foreach($collection as $entity)
+            return $this->transaction(function() use ($collection)
             {
-                parent::delete($entity);
-            }
-        });
+                foreach($collection as $entity)
+                {
+                    parent::delete($entity);
+                }
+            });
+        }
     }
     
     /** 
